@@ -41,11 +41,11 @@ def get_paths(net_name, engine):
         f'{net_name} (engine: {engine}) is not defined in net_catalogue'
 
     # check whether files are available for net; if not, specify what is missing
-    assert net_name in available_nets[engine], \
-        f'{net_name} (engine: {engine}) not available; ' + \
-        '; '.join(f'{path_name} path exists: {exists}'
-                  for path_name, exists in net_paths_exist[engine][net_name].items()) + \
-        '. Please check paths in net_catalogue.net_paths'
+    # assert net_name in available_nets[engine], \
+    #     f'{net_name} (engine: {engine}) not available; ' + \
+    #     '; '.join(f'{path_name} path exists: {exists}'
+    #               for path_name, exists in net_paths_exist[engine][net_name].items()) + \
+    #     '. Please check paths in net_catalogue.net_paths'
 
     path_dict = net_paths[engine][net_name]
     return path_dict.get('definition', None), path_dict['weights']
