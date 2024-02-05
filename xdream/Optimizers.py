@@ -1,8 +1,8 @@
 import os
 from shutil import copyfile
 import numpy as np
-import Generators
-import utils
+import xdream.Generators as Generators
+import xdream.utils as utils
 
 
 class Optimizer:

@@ -1,6 +1,7 @@
 from .deepsim import *
 from .alexnet import *
 
+#The load_net function takes a network name as an argument and returns an instance of the corresponding class from the get_net dictionary.
 
 get_net = {
     'deepsim-norm1': DeePSiMNorm,

@@ -1,7 +1,7 @@
 import numpy as np
-from net_utils import net_catalogue
-from net_utils.local_settings import gpu_available
-from utils import resize_image
+from xdream.net_utils import net_catalogue
+from xdream.net_utils.local_settings import gpu_available
+from xdream.utils import resize_image
 
 
 class Generator:
@@ -68,7 +68,7 @@ class NNGenerator(Generator):
 
     def load_generator(self):
         if self._GNN is None:
-            from net_utils import net_loader
+            from xdream.net_utils import net_loader
             self._GNN, self._engine = net_loader.load_net(self._gnn_name, self._engine, self._fresh_copy)
             self._detransformer = net_loader.get_transformer(self._gnn_name, self._engine, outputs_image=True)
             if self._engine == 'caffe':

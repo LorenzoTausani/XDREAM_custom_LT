@@ -1,8 +1,8 @@
 import os
 import numpy as np
-from net_utils import net_loader
-import utils
-from Scorers import Scorer, WithIOScorer
+from xdream.net_utils import net_loader
+import xdream.utils as utils
+from xdream.Scorers import Scorer, WithIOScorer
 
 gpu_available = net_loader.gpu_available
 

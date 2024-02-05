@@ -8,15 +8,15 @@ except ImportError:
     caffe_available = False
 try:
     import torch
-    from net_utils import torch_nets
+    from xdream.net_utils import torch_nets
     torch_available = True
 except ImportError:
     torch = None
     torch_available = False
-from .local_settings import gpu_available
-from .net_catalogue import *
-from .net_catalogue import net_paths, net_meta
-from .transformer import Transformer
+from xdream.net_utils.local_settings import gpu_available
+from xdream.net_utils.net_catalogue import *
+from xdream.net_utils.net_catalogue import net_paths, net_meta
+from xdream.net_utils.transformer import Transformer
 
 if not (caffe_available or torch_available):
     raise ImportError('please install either caffe or pytorch')

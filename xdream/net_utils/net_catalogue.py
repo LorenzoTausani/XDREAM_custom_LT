@@ -5,7 +5,7 @@ To add a new network, edit `net_paths`, `net_io_layers`,
 """
 from os.path import join, exists
 from numpy import array
-from .local_settings import nets_dir
+from xdream.net_utils.local_settings import nets_dir
 
 
 __all__ = ['refresh_available_nets',
@@ -13,6 +13,7 @@ __all__ = ['refresh_available_nets',
            'available_classifiers', 'available_generators']
 
 
+# Create a dictionary storing the paths to the  weights of both alexnet and the deepsim layers (of the generator?)
 # paths for nets
 #   - manual entries for two classifiers
 net_paths = {
@@ -77,9 +78,11 @@ net_meta = {'caffenet':      {'type': 'classifier', 'input_layer_shape': (3, 227
             'deepsim-fc6':   {'input_layer_shape':  (4096,)},
             'deepsim-fc7':   {'input_layer_shape':  (4096,)},
             'deepsim-fc8':   {'input_layer_shape':  (1000,)}}
-for d in net_meta.values():
+for d in net_meta.values(): # iterate over the values of the dictionary
+    #The setdefault() method is a dictionary method that allows you to set a default value for a key if the key does not already exist in the dictionary.
     d.setdefault('scale', 255)
 for n in _deepsim_layers:
+    #The update() method is a dictionary method that allows you to add or update multiple key-value pairs in a dictionary
     net_meta[f'deepsim-{n}'].update({
         'type': 'generator',
         'input_layer_name': 'feat',
@@ -87,30 +90,30 @@ for n in _deepsim_layers:
         'output_layer_shape': (3, 240, 240,) if 'norm' in n else (3, 256, 256)
     })
 
-
+#  net_paths_exist, available_nets, available_classifiers, and available_generators variables are being initialized to None
 net_paths_exist = available_nets = available_classifiers \
     = available_generators = None
 
 
 def refresh_available_nets():
-    global net_paths_exist, available_nets, available_classifiers, available_generators
-    net_paths_exist = {
+    global net_paths_exist, available_nets, available_classifiers, available_generators # This line declares that the function will modify the global variables net_paths_exist, available_nets, available_classifiers, and available_generators.
+    net_paths_exist = { #it says, for every engine, for every netm for every attribute of the net, wether the file associated to that attribute exists or not
         engine: {net_name: {path_name: bool(exists(path))
-                            for path_name, path in paths.items()}
-                 for net_name, paths in nets_paths.items()}
-        for engine, nets_paths in net_paths.items()
+                            for path_name, path in paths.items()} #path_name: definition; path: the actual path to the file
+                 for net_name, paths in nets_paths.items()} #net_name: caffenet, alexnet,...; paths: dict with paths to weights, etc...
+        for engine, nets_paths in net_paths.items() #engine: caffe/pythorch, net_paths: all paths to different nets (i.e. alexnet, deepsim)
     }
-    available_nets = {
+    available_nets = { #for each engine (caffe/pytorch), it associates a tuple with the names of the networks of that engine (alexnet, deepsim1,...) if all their net_paths exist
         engine: tuple(net_name for (net_name, paths_exist) in nets_paths_exist.items()
                       if all(paths_exist.values()))
         for engine, nets_paths_exist in net_paths_exist.items()
     }
-    available_classifiers = {
+    available_classifiers = { #same as available_nets, but only for classifiers (i.e. caffenet/alexnet)
         engine: tuple(net_name for net_name in net_names
                       if net_meta[net_name]['type'] == 'classifier')
         for engine, net_names in available_nets.items()
     }
-    available_generators = {
+    available_generators = {#same as available_nets, but only for generators (i.e. caffenet/alexnet)
         engine: tuple(net_name for net_name in net_names
                       if net_meta[net_name]['type'] == 'generator')
         for engine, net_names in available_nets.items()

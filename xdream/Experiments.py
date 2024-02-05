@@ -5,11 +5,11 @@ from time import time, sleep
 import h5py as h5
 import numpy as np
 
-import CNNScorers
-import Optimizers
-import Scorers
-import utils
-from Logger import Tee
+import xdream.CNNScorers as CNNScorers
+import xdream.Optimizers as Optimizers
+import xdream.Scorers as Scorers
+import xdream.utils as utils
+from xdream.Logger import Tee
 
 np.set_printoptions(precision=4, suppress=True)
 

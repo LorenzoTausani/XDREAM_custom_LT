@@ -15,7 +15,7 @@ class Tee:
     """
     copied from https://stackoverflow.com/questions/616645/how-do-i-duplicate-sys-stdout-to-a-log-file-in-python
     """
-    def __init__(self, logfpath, overwrite=False):
+    def __init__(self, logfpath, overwrite=True): #overwrite was originally set to false
         self._terminal = sys.stdout
         self._file = None
 
