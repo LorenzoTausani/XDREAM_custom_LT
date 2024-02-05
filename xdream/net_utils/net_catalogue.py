@@ -22,7 +22,7 @@ net_paths = {
                      'weights': join(nets_dir, 'caffenet', 'bvlc_reference_caffenet.caffemodel')},
     },
     'pytorch': {
-        'alexnet':  {'weights': join(nets_dir, 'pytorch', 'alexnet', 'alexnet-owt-4df8aa71.pt')}
+        'alexnet':  {'weights': join(nets_dir, 'pytorch', 'alexnet', 'alexnet-owt-4df8aa71.pth')}
                      # 'https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth'
     }
 }
