@@ -1,5 +1,5 @@
-numpy
-h5py
-opencv-python
-scipy
-scikit-image
+numpy==1.26.3
+h5py=3.9.9
+opencv==4.7.0
+scipy==1.11.4
+scikit-image==0.22.0
