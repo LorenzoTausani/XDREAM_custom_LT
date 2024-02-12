@@ -1,2 +1,9 @@
 local_settings.py
 scratch*
+
+# IDE settings
+*.vscode
+*.idea
+
+# DRIVE
+/.tmp.driveupload/
