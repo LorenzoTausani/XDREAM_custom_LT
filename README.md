@@ -140,3 +140,15 @@ empirically optimizing hyperparameters.
     (characterizing performance in simulated experiments
     with CNNs)
 - Clean up code
+  
+## Commit types
+
+Project commits adheres to [Conventioanl Commits](https://www.conventionalcommits.org/en/v1.0.0/) rules, a specification for adding human and machine readable meaning to commit messages:
+
+* `feat`: Used when adding a new feature.
+* `fix`: Used when fixing a bug.
+* `refactor`: Used when reorganizing or restructuring existing code.
+* `docs`: Used when making changes related to documentation or comments.
+* `style`: Used for changes in code formatting, whitespace, punctuation, etc.
+* `test`: Used when adding or updating test code or test scenarios.
+* `chore`: Used for changes related to auxiliary tools, configuration files, or project organization.
